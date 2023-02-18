@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "https://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.example.model.products.Goods" table="goods">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="increment" />
+        </id>
+        <property name="productName" type="java.lang.String">
+            <column name="name" />
+        </property>
+
+        <property name="cost" type="int">
+            <column name="cost" />
+        </property>
+        <many-to-one name="purchase" class="org.example.model.Purchase" lazy="false" fetch="select">
+            <column name="purchase_id"/>
+        </many-to-one>
+
+        <property name="amount" type="int">
+            <column name="amount" />
+        </property>
+
+        <many-to-one name="category" class="org.example.model.products.Category" lazy="false" fetch="select">
+            <column name="category_id"/>
+        </many-to-one>
+
+
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "https://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.example.model.Purchase" table="purchase">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="increment" />
+        </id>
+        <property name="label" type="java.lang.String">
+            <column name="label" />
+        </property>
+        <many-to-one name="person" class="org.example.model.member.Person" cascade="all" fetch="select">
+            <column name="pur_person_id" />
+        </many-to-one>
+
+        <set name="goodsSet" table="goods" inverse="true" cascade="all" lazy="false" fetch="select">
+            <key column="purchase_id" on-delete="cascade"/>
+            <one-to-many class="org.example.model.products.Goods" />
+        </set>
+        <property name="insertTime" type="java.util.Date">
+            <column name="insertTime" />
+        </property>
+
+    </class>
+</hibernate-mapping>

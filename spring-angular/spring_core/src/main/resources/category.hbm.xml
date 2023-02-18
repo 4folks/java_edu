@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "https://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.example.model.products.Category" table="category">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="increment" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="name" />
+        </property>
+
+        <set name="goodsSet" table="goods" inverse="true" cascade="save-update" lazy="true" fetch="select">
+            <key>
+                <column name="category_id"/>
+            </key>
+            <one-to-many class="org.example.model.products.Goods" />
+        </set>
+
+
+    </class>
+</hibernate-mapping>

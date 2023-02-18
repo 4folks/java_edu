@@ -1,0 +1,13 @@
+<p>person-list works!</p>
+
+<ul class="person-list">
+    <li *ngFor="let person of persons">
+      <a routerLink="/detail/{{person.id}}">
+        <span class="badge">{{person.id}}</span> {{person.name}}
+      </a>
+      <button type="button" class="delete" title="delete hero"
+        (click)="delete(person)">x</button>
+    </li>
+  </ul>
+  <button type="button" class="create" title="create person"
+  (click)="createPerson()">createPerson</button>

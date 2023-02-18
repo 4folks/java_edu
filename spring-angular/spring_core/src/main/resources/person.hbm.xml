@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "https://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="org.example.model.member.Person" table="person">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="increment" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="name" />
+        </property>
+        <property name="monthlyBudget" type="int">
+            <column name="monthly_budget" />
+        </property>
+        <property name="balance" type="int">
+            <column name="balance" />
+        </property>
+        <set name="groups" table="groups" inverse="true" cascade="all" lazy="false" fetch="select">
+            <key column="person_id" on-delete="cascade"/>
+            <one-to-many class="org.example.model.member.Group" />
+        </set>
+
+        <set name="purchases" table="purchase" inverse="true" cascade="all" lazy="false" fetch="select">
+            <key column="pur_person_id" on-delete="cascade" />
+
+            <one-to-many class="org.example.model.Purchase" />
+        </set>
+    </class>
+</hibernate-mapping>
